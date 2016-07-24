@@ -1,0 +1,4 @@
+PlayZoneTwoIntent Play Pandora in the piano room
+VolumeZoneTwoIntent Play louder
+ActivityIntent Watch TV
+ActivityIntent Play a DVD
