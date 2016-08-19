@@ -1,9 +1,3 @@
-"""
-In this file we specify default event handlers which are then populated into the handler map using metaprogramming
-Copyright Anjishnu Kumar 2015
-Happy Hacking!
-"""
-
 from ask import alexa
 from avr import AVR
 import time
@@ -41,34 +35,53 @@ def play_zone2_intent_handler(request):
     else:
         return alexa.create_response("I don't know the source {}.".format(source), end_session=True)
 
-    response = command(['Z2ON', 'Z2' + name], msg)
-    return response
+    return command(['Z2ON', 'Z2' + name], msg)
 
 @alexa.intent_handler("StopZoneTwoIntent")
 def stop_intent_handler(request):
-    response = command('Z2OFF', "Piano room speakers turned off.")
-    return response
+    return command('Z2OFF', "Piano room speakers turned off.")
 
-@alexa.intent_handler("ActivityIntent")
+@alexa.intent_handler("VolumeZoneTwoIntent")
+def volume_zone2_intent(request):
+    vol = request.slots["Volume"].lower()
+    if vol == 'louder':
+        cmd = 'UP'
+    else:
+        cmd = 'DOWN'
+    num_ticks = 10
+    return command(['Z2' + cmd] * num_ticks, "OK")
+        
+@alexa.intent_handler("OffIntent")
+def off_intent_handler(request):
+    return command(['Z2OFF','PWSTANDBY'], "Stereo is off.")
+
+@alexa.intent_handler("SetupMainZoneIntent")
 def activity_intent_handler(request):
     act = request.slots["Activity"].lower()
-    if act == 'watch tv':
+    if act in ("tv", "t.v.", "netflix", "amazon video"):
         name = 'SAT/CBL'
         msg = 'OK. Turn on the TV to watch Roku, Netflix, or Amazon Video.'
+    elif act == 'you tube':
+        name = 'SAT/CBL'
+        msg = 'OK. Use the Roku remote to select the You Tube app.'
+    elif act.find('phone') > -1 or act == 'air play':
+        name = 'NET'
+        msg = 'OK. On your I phone, choose the Marantz receiver as the Air Play destination, and play a song.'
     elif act.find('dvd') > -1 or act.find('movie') > -1:
         name = 'BD'
         msg = 'OK. Put in a DVD and pop the popcorn.'
-    elif act == 'watch apple tv' or act.find('photos') > -1:
+    elif act == 'apple tv' or act.find('photos') > -1 or act.find('pictures') > -1:
         name = 'MPLAY'
         msg = 'OK. Use the small white remote to control Apple TV.'
     elif act == 'pandora':
         name = 'PANDORA'
         msg = 'Pandora streaming will start in the TV room shortly.'
     else:
-        return alexa.create_response("Sorry, I don't know how to set up the stereo for that task.", end_session=True, card_obj=alexa.create_card(title="Marantz Error", content=act))
+        return alexa.create_response("Sorry, I don't know how to set up the stereo for the " + act + " task.", end_session=True, card_obj=alexa.create_card(title="Marantz Error", content=act))
 
-    response = command(['Z2OFF', 'SI'+name], msg)
+    response = command(['Z2OFF', 'PWON', 'ZMON', 'SI'+name], msg)
     return response
+
 
 @alexa.default_handler()
 def default_handler(request):

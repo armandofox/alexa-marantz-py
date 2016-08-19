@@ -1,4 +1,5 @@
 PlayZoneTwoIntent  play (the|) {Source} in (zone two|the piano room)
-VolumeZoneTwoIntent (play|) (louder|softer)
+VolumeZoneTwoIntent {Volume}
 StopZoneTwoIntent stop
-SetupMainZoneIntent {Activity}
+SetupMainZoneIntent (watch|play|listen to|show|see|set up|set up|set up for|stream) (from|) (my|a|the|some|an|) {Activity}
+OffIntent turn off
