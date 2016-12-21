@@ -5,7 +5,7 @@ import sys
 class AVR():
 
 
-    MARANTZ_IP = '199.116.72.88'
+    MARANTZ_IP = '52.119.117.52'
     MARANTZ_PORT = 28147
     DELAY_BETWEEN_COMMANDS = 0.2
 

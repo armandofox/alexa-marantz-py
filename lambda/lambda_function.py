@@ -58,7 +58,7 @@ def off_intent_handler(request):
 @alexa.intent_handler("SetupMainZoneIntent")
 def activity_intent_handler(request):
     act = request.slots["Activity"].lower()
-    if act in ("tv", "t.v.", "netflix", "amazon video"):
+    if act in ("tv", "t.v.", "netflix", "roku", "amazon video"):
         name = 'SAT/CBL'
         msg = 'OK. Turn on the TV to watch Roku, Netflix, or Amazon Video.'
     elif act == 'you tube':
@@ -69,8 +69,8 @@ def activity_intent_handler(request):
         msg = 'OK. On your I phone, choose the Marantz receiver as the Air Play destination, and play a song.'
     elif act.find('dvd') > -1 or act.find('movie') > -1:
         name = 'BD'
-        msg = 'OK. Put in a DVD and pop the popcorn.'
-    elif act == 'apple tv' or act.find('photos') > -1 or act.find('pictures') > -1:
+        msg = 'DVD player is ready. What are we watching?'
+    elif act == 'apple tv' or act == 'apple t.v.' or act.find('photos') > -1 or act.find('pictures') > -1:
         name = 'MPLAY'
         msg = 'OK. Use the small white remote to control Apple TV.'
     elif act == 'pandora':
