@@ -1,12 +1,13 @@
 import telnetlib
 import time
 import sys
+import os
 
 class AVR():
 
 
-    MARANTZ_IP = '52.119.117.101'
-    MARANTZ_PORT = 28147
+    MARANTZ_IP = os.environ["IP"]
+    MARANTZ_PORT = os.environ["PORT"]
     DELAY_BETWEEN_COMMANDS = 0.2
 
     def __init__(self, ip=MARANTZ_IP, port=MARANTZ_PORT):

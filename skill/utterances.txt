@@ -1,0 +1,117 @@
+PlayZoneTwoIntent play the {Source} in zone two
+PlayZoneTwoIntent play the {Source} in the piano room
+PlayZoneTwoIntent play my {Source} in zone two
+PlayZoneTwoIntent play my {Source} in the piano room
+PlayZoneTwoIntent play {Source} in zone two
+PlayZoneTwoIntent play {Source} in the piano room
+VolumeZoneTwoIntent {Volume}
+StopZoneTwoIntent stop
+SetupMainZoneIntent watch from my {Activity}
+SetupMainZoneIntent watch from a {Activity}
+SetupMainZoneIntent watch from the {Activity}
+SetupMainZoneIntent watch from some {Activity}
+SetupMainZoneIntent watch from an {Activity}
+SetupMainZoneIntent watch from {Activity}
+SetupMainZoneIntent watch my {Activity}
+SetupMainZoneIntent watch a {Activity}
+SetupMainZoneIntent watch the {Activity}
+SetupMainZoneIntent watch some {Activity}
+SetupMainZoneIntent watch an {Activity}
+SetupMainZoneIntent watch {Activity}
+SetupMainZoneIntent play from my {Activity}
+SetupMainZoneIntent play from a {Activity}
+SetupMainZoneIntent play from the {Activity}
+SetupMainZoneIntent play from some {Activity}
+SetupMainZoneIntent play from an {Activity}
+SetupMainZoneIntent play from {Activity}
+SetupMainZoneIntent play my {Activity}
+SetupMainZoneIntent play a {Activity}
+SetupMainZoneIntent play the {Activity}
+SetupMainZoneIntent play some {Activity}
+SetupMainZoneIntent play an {Activity}
+SetupMainZoneIntent play {Activity}
+SetupMainZoneIntent listen to from my {Activity}
+SetupMainZoneIntent listen to from a {Activity}
+SetupMainZoneIntent listen to from the {Activity}
+SetupMainZoneIntent listen to from some {Activity}
+SetupMainZoneIntent listen to from an {Activity}
+SetupMainZoneIntent listen to from {Activity}
+SetupMainZoneIntent listen to my {Activity}
+SetupMainZoneIntent listen to a {Activity}
+SetupMainZoneIntent listen to the {Activity}
+SetupMainZoneIntent listen to some {Activity}
+SetupMainZoneIntent listen to an {Activity}
+SetupMainZoneIntent listen to {Activity}
+SetupMainZoneIntent show from my {Activity}
+SetupMainZoneIntent show from a {Activity}
+SetupMainZoneIntent show from the {Activity}
+SetupMainZoneIntent show from some {Activity}
+SetupMainZoneIntent show from an {Activity}
+SetupMainZoneIntent show from {Activity}
+SetupMainZoneIntent show my {Activity}
+SetupMainZoneIntent show a {Activity}
+SetupMainZoneIntent show the {Activity}
+SetupMainZoneIntent show some {Activity}
+SetupMainZoneIntent show an {Activity}
+SetupMainZoneIntent show {Activity}
+SetupMainZoneIntent see from my {Activity}
+SetupMainZoneIntent see from a {Activity}
+SetupMainZoneIntent see from the {Activity}
+SetupMainZoneIntent see from some {Activity}
+SetupMainZoneIntent see from an {Activity}
+SetupMainZoneIntent see from {Activity}
+SetupMainZoneIntent see my {Activity}
+SetupMainZoneIntent see a {Activity}
+SetupMainZoneIntent see the {Activity}
+SetupMainZoneIntent see some {Activity}
+SetupMainZoneIntent see an {Activity}
+SetupMainZoneIntent see {Activity}
+SetupMainZoneIntent set up from my {Activity}
+SetupMainZoneIntent set up from a {Activity}
+SetupMainZoneIntent set up from the {Activity}
+SetupMainZoneIntent set up from some {Activity}
+SetupMainZoneIntent set up from an {Activity}
+SetupMainZoneIntent set up from {Activity}
+SetupMainZoneIntent set up my {Activity}
+SetupMainZoneIntent set up a {Activity}
+SetupMainZoneIntent set up the {Activity}
+SetupMainZoneIntent set up some {Activity}
+SetupMainZoneIntent set up an {Activity}
+SetupMainZoneIntent set up {Activity}
+SetupMainZoneIntent set up from my {Activity}
+SetupMainZoneIntent set up from a {Activity}
+SetupMainZoneIntent set up from the {Activity}
+SetupMainZoneIntent set up from some {Activity}
+SetupMainZoneIntent set up from an {Activity}
+SetupMainZoneIntent set up from {Activity}
+SetupMainZoneIntent set up my {Activity}
+SetupMainZoneIntent set up a {Activity}
+SetupMainZoneIntent set up the {Activity}
+SetupMainZoneIntent set up some {Activity}
+SetupMainZoneIntent set up an {Activity}
+SetupMainZoneIntent set up {Activity}
+SetupMainZoneIntent set up for from my {Activity}
+SetupMainZoneIntent set up for from a {Activity}
+SetupMainZoneIntent set up for from the {Activity}
+SetupMainZoneIntent set up for from some {Activity}
+SetupMainZoneIntent set up for from an {Activity}
+SetupMainZoneIntent set up for from {Activity}
+SetupMainZoneIntent set up for my {Activity}
+SetupMainZoneIntent set up for a {Activity}
+SetupMainZoneIntent set up for the {Activity}
+SetupMainZoneIntent set up for some {Activity}
+SetupMainZoneIntent set up for an {Activity}
+SetupMainZoneIntent set up for {Activity}
+SetupMainZoneIntent stream from my {Activity}
+SetupMainZoneIntent stream from a {Activity}
+SetupMainZoneIntent stream from the {Activity}
+SetupMainZoneIntent stream from some {Activity}
+SetupMainZoneIntent stream from an {Activity}
+SetupMainZoneIntent stream from {Activity}
+SetupMainZoneIntent stream my {Activity}
+SetupMainZoneIntent stream a {Activity}
+SetupMainZoneIntent stream the {Activity}
+SetupMainZoneIntent stream some {Activity}
+SetupMainZoneIntent stream an {Activity}
+SetupMainZoneIntent stream {Activity}
+OffIntent turn off

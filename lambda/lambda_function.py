@@ -26,9 +26,9 @@ def command(cmd,ok):
 @alexa.intent_handler("PlayZoneTwoIntent")
 def play_zone2_intent_handler(request):
     source = request.slots["Source"].lower()
-    if source == 'i tunes' or source == 'apple tv':
-        name = 'MPLAY'
-        msg = 'Use the Remote app on your I Phone to play I Tunes in the piano room.'
+    if source == 'i phone':
+        name = 'NET'
+        msg = 'OK. Set your I Phone to the Air Play destination named Marantz to hear your music in the piano room.'
     elif source == 'pandora':
         name = 'PANDORA'
         msg = 'Pandora will start playing in the piano room in a few seconds.'
