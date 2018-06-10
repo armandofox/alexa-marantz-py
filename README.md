@@ -3,7 +3,7 @@
 Simple app to control my Marantz 5007 receiver (should work with related
 Marantz models as well) via Alexa.
 
-The code is based on @anjishnu's useful [Python version of Alexa Skills
+The code is based on [@anjishnu](https://github.com/anjishnu)'s useful [Python version of Alexa Skills
 Kit](https://github.com/anjishnu/ask-alexa-pykit). 
 
 You need Python 2.7 or later and the [AWS command line tool](https://aws.amazon.com/cli/).

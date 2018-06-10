@@ -11,9 +11,11 @@ def lambda_handler(request_obj, context=None):
     '''
 
     metadata = {}
+    # print "Calling handler for {}".format(request_obj.intent_name())
     return alexa.route_request(request_obj, metadata)
 
 def command(cmd,ok):
+    print "Sending '{}' to AVR".format(cmd)
     result = AVR().send(cmd)
     if result == 'OK':
         card = alexa.create_card(title = "Marantz", subtitle=None, content=ok)
@@ -26,9 +28,9 @@ def command(cmd,ok):
 @alexa.intent_handler("PlayZoneTwoIntent")
 def play_zone2_intent_handler(request):
     source = request.slots["Source"].lower()
-    if source == 'i phone':
+    if source in ('i phone', 'iphone', 'mac', 'itunes', 'i tunes'):
         name = 'NET'
-        msg = 'OK. Set your I Phone to the Air Play destination named Marantz to hear your music in the piano room.'
+        msg = "OK. Set your {} to the Air Play destination named Marantz to hear your music in the piano room.".format(source)
     elif source == 'pandora':
         name = 'PANDORA'
         msg = 'Pandora will start playing in the piano room in a few seconds.'
@@ -66,13 +68,10 @@ def activity_intent_handler(request):
         msg = 'OK. Use the Roku remote to select the You Tube app.'
     elif act.find('phone') > -1 or act == 'air play':
         name = 'NET'
-        msg = 'OK. On your I phone, choose the Marantz receiver as the Air Play destination, and play a song.'
+        msg = 'OK. On your I phone or I tunes, choose the Marantz receiver as the Air Play destination.'
     elif act.find('dvd') > -1 or act.find('movie') > -1:
         name = 'BD'
         msg = 'DVD player is ready. What are we watching?'
-    elif act == 'apple tv' or act == 'apple t.v.' or act.find('photos') > -1 or act.find('pictures') > -1:
-        name = 'MPLAY'
-        msg = 'OK. Use the small white remote to control Apple TV.'
     elif act == 'pandora':
         name = 'PANDORA'
         msg = 'Pandora streaming will start in the TV room shortly.'
@@ -86,7 +85,7 @@ def activity_intent_handler(request):
 @alexa.default_handler()
 def default_handler(request):
     """ The default handler gets invoked if no handler is set for a request """
-    return alexa.create_response(message="Just ask")
+    return alexa.create_response(message="Thistirio was activated, but you need to ask me to do something.")
 
 
 @alexa.request_handler("LaunchRequest")

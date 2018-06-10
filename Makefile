@@ -5,6 +5,9 @@ PYTHON = python
 SKILL_NAME = MarantzIP
 ZIPFILE = _$(SKILL_NAME).zip
 
+IP ?= $(shell dig +short myip.opendns.com @resolver1.opendns.com)
+PORT ?= $(shell $(AWS) lambda get-function-configuration --function-name $(SKILL_NAME) | jq '.["Environment"]["Variables"]["PORT"]')
+
 zip: $(ZIPFILE)
 
 $(ZIPFILE): $(wildcard lambda/*)
@@ -12,7 +15,6 @@ $(ZIPFILE): $(wildcard lambda/*)
 
 update_port_and_ip:
 	$(AWS) lambda update-function-configuration --function-name $(SKILL_NAME) --environment "Variables={IP=$(IP),PORT=$(PORT)}"
-
 
 upload_lambda: $(ZIPFILE)
 	$(AWS) lambda update-function-code --function-name $(SKILL_NAME) --zip-file fileb://$(ZIPFILE)
