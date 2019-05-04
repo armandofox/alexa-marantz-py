@@ -25,19 +25,22 @@ def command(cmd,ok):
         response = alexa.create_response("Sorry, the receiver doesn't seem to be cooperating.", end_session=True, card_obj=card)
     return response
 
+@alexa.intent_handler("InteractiveSetupIntent")
+def interactive_setup_intent(request):
+    # Alexa dialog delegation will have filled the slots 'activity' (from ACTIVITY_LIST) and 'location'
+    # (from MARANTZ_LOCATIONS) so we just have to check if they're compatible, e.g. you can't watch
+    # a DVD in the piano room.
+    act = request.slots["Activity"].lower()
+    location = request.slots["Location"].lower()
+    if location == 't.v. room':
+        return setup_main_zone_for_activity(act)
+    else:
+        return setup_zone2_for_activity(act)
+
 @alexa.intent_handler("PlayZoneTwoIntent")
 def play_zone2_intent_handler(request):
     source = request.slots["Source"].lower()
-    if source in ('i phone', 'iphone', 'mac', 'itunes', 'i tunes'):
-        name = 'NET'
-        msg = "OK. Set your {} to the Air Play destination named Marantz to hear your music in the piano room.".format(source)
-    elif source == 'pandora':
-        name = 'PANDORA'
-        msg = 'Pandora will start playing in the piano room in a few seconds.'
-    else:
-        return alexa.create_response("I don't know the source {}.".format(source), end_session=True)
-
-    return command(['Z2ON', 'Z2' + name], msg)
+    return setup_zone2_for_activity(source)
 
 @alexa.intent_handler("StopZoneTwoIntent")
 def stop_intent_handler(request):
@@ -60,6 +63,26 @@ def off_intent_handler(request):
 @alexa.intent_handler("SetupMainZoneIntent")
 def activity_intent_handler(request):
     act = request.slots["Activity"].lower()
+    return setup_main_zone_for_activity(act)
+
+
+@alexa.default_handler()
+def default_handler(request):
+    """ The default handler gets invoked if no handler is set for a request """
+    return alexa.create_response(message="Thistirio was activated, but you need to ask me to do something.")
+
+
+@alexa.request_handler("LaunchRequest")
+def launch_request_handler(request):
+    return alexa.create_response(message="MarantzControl launched")
+
+
+@alexa.request_handler("SessionEndedRequest")
+def session_ended_request_handler(request):
+    return alexa.create_response(message="MarantzControl signoff")
+    
+
+def setup_main_zone_for_activity(act):
     if act in ("tv", "t.v.", "netflix", "roku", "amazon video"):
         name = 'SAT/CBL'
         msg = 'OK. Turn on the TV to watch Roku, Netflix, or Amazon Video.'
@@ -81,20 +104,16 @@ def activity_intent_handler(request):
     response = command(['Z2OFF', 'PWON', 'ZMON', 'SI'+name], msg)
     return response
 
+def setup_zone2_for_activity(source):
+    if source in ('i phone', 'iphone', 'mac', 'itunes', 'i tunes'):
+        name = 'NET'
+        msg = "OK. Set your {} to the Air Play destination named Marantz to hear your music in the piano room.".format(source)
+    elif source == 'pandora':
+        name = 'PANDORA'
+        msg = 'Pandora will start playing in the piano room in a few seconds.'
+    else:
+        return alexa.create_response("I don't know the source {}.".format(source), end_session=True)
 
-@alexa.default_handler()
-def default_handler(request):
-    """ The default handler gets invoked if no handler is set for a request """
-    return alexa.create_response(message="Thistirio was activated, but you need to ask me to do something.")
+    return command(['Z2ON', 'Z2' + name], msg)
 
-
-@alexa.request_handler("LaunchRequest")
-def launch_request_handler(request):
-    return alexa.create_response(message="MarantzControl launched")
-
-
-@alexa.request_handler("SessionEndedRequest")
-def session_ended_request_handler(request):
-    return alexa.create_response(message="MarantzControl signoff")
-    
 
