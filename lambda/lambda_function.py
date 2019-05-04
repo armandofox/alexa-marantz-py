@@ -15,7 +15,7 @@ def lambda_handler(request_obj, context=None):
     return alexa.route_request(request_obj, metadata)
 
 def command(cmd,ok):
-    print "Sending '{}' to AVR".format(cmd)
+    # print "Sending '{}' to AVR".format(cmd)
     result = AVR().send(cmd)
     if result == 'OK':
         card = alexa.create_card(title = "Marantz", subtitle=None, content=ok)
@@ -39,7 +39,7 @@ def interactive_setup_intent(request):
 
 @alexa.intent_handler("PlayZoneTwoIntent")
 def play_zone2_intent_handler(request):
-    source = request.slots["Source"].lower()
+    source = request.slots["Activity"].lower()
     return setup_zone2_for_activity(source)
 
 @alexa.intent_handler("StopZoneTwoIntent")
@@ -89,15 +89,12 @@ def setup_main_zone_for_activity(act):
     elif act == 'you tube':
         name = 'SAT/CBL'
         msg = 'OK. Use the Roku remote to select the You Tube app.'
-    elif act.find('phone') > -1 or act == 'air play':
+    elif act.find('phone') > -1 or act in ('air play', 'pandora', 'spotify'):
         name = 'NET'
-        msg = 'OK. On your I phone or I tunes, choose the Marantz receiver as the Air Play destination.'
+        msg = 'OK. Open any music app on your I phone and choose the Marantz receiver as the Air Play destination.'
     elif act.find('dvd') > -1 or act.find('movie') > -1:
         name = 'BD'
         msg = 'DVD player is ready. What are we watching?'
-    elif act == 'pandora':
-        name = 'PANDORA'
-        msg = 'Pandora streaming will start in the TV room shortly.'
     else:
         return alexa.create_response("Sorry, I don't know how to set up the stereo for the " + act + " task.", end_session=True, card_obj=alexa.create_card(title="Marantz Error", content=act))
 
@@ -105,12 +102,12 @@ def setup_main_zone_for_activity(act):
     return response
 
 def setup_zone2_for_activity(source):
-    if source in ('i phone', 'iphone', 'mac', 'itunes', 'i tunes'):
+    if source in ('i phone', 'iphone', 'mac', 'itunes', 'i tunes', 'air play', 'pandora', 'spotify'):
         name = 'NET'
-        msg = "OK. Set your {} to the Air Play destination named Marantz to hear your music in the piano room.".format(source)
-    elif source == 'pandora':
-        name = 'PANDORA'
-        msg = 'Pandora will start playing in the piano room in a few seconds.'
+        msg = "OK. Open any music app on your I phone or Mac and choose the Marantz receiver as the Air Play destination."
+    # elif source == 'pandora':
+    #     name = 'PANDORA'
+    #     msg = 'Pandora will start playing in the piano room in a few seconds.'
     else:
         return alexa.create_response("I don't know the source {}.".format(source), end_session=True)
 

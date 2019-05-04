@@ -1,4 +1,4 @@
-PlayZoneTwoIntent  play (the|my|) {Source} in (zone two|the piano room)
+PlayZoneTwoIntent  play (the|my|) {Activity} in the piano room
 VolumeZoneTwoIntent {Volume}
 StopZoneTwoIntent stop
 SetupMainZoneIntent (watch|play|listen to|show|see|set up|set up|set up for|stream) (from|) (my|a|the|some|an|) {Activity}
