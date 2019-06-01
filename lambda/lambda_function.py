@@ -32,7 +32,8 @@ def interactive_setup_intent(request):
     # a DVD in the piano room.
     act = request.slots["Activity"].lower()
     location = request.slots["Location"].lower()
-    if location == 't.v. room':
+    print ("Activity=<{}>, Location=<{}>\n".format(act,location))
+    if location == 't.v. room' or location == 'tv room':
         return setup_main_zone_for_activity(act)
     else:
         return setup_zone2_for_activity(act)
@@ -69,7 +70,7 @@ def activity_intent_handler(request):
 @alexa.default_handler()
 def default_handler(request):
     """ The default handler gets invoked if no handler is set for a request """
-    return alexa.create_response(message="Thistirio was activated, but you need to ask me to do something.")
+    return alexa.create_response(message="Marantz Control was activated, but you need to ask me to do something.")
 
 
 @alexa.request_handler("LaunchRequest")
@@ -102,6 +103,7 @@ def setup_main_zone_for_activity(act):
     return response
 
 def setup_zone2_for_activity(source):
+    source = source.lower()
     if source in ('i phone', 'iphone', 'mac', 'itunes', 'i tunes', 'air play', 'pandora', 'spotify'):
         name = 'NET'
         msg = "OK. Open any music app on your I phone or Mac and choose the Marantz receiver as the Air Play destination."
@@ -109,7 +111,7 @@ def setup_zone2_for_activity(source):
     #     name = 'PANDORA'
     #     msg = 'Pandora will start playing in the piano room in a few seconds.'
     else:
-        return alexa.create_response("I don't know the source {}.".format(source), end_session=True)
+        return alexa.create_response("I don't know how to play the source {} in the piano room.".format(source), end_session=True)
 
     return command(['Z2ON', 'Z2' + name], msg)
 
