@@ -84,10 +84,10 @@ def session_ended_request_handler(request):
     
 
 def setup_main_zone_for_activity(act):
-    if act in ("tv", "t.v.", "netflix", "roku", "amazon video"):
+    if act in ("tv", "t.v.", "netflix", "roku", "you tube", "youtube", "amazon video"):
         name = 'SAT/CBL'
         msg = 'OK. Turn on the TV to watch Roku, Netflix, or Amazon Video.'
-    elif act == 'you tube':
+    elif act in ('you tube', 'youtube'):
         name = 'SAT/CBL'
         msg = 'OK. Use the Roku remote to select the You Tube app.'
     elif act.find('phone') > -1 or act in ('air play', 'pandora', 'spotify'):
