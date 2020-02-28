@@ -10,7 +10,7 @@ def lambda_handler(request_obj, context=None):
     input 'request_obj' is JSON request converted into a nested python object.
     '''
 
-    metadata = {}
+    metadata = { 'lights': MerossDriver() }
     # print "Calling handler for {}".format(request_obj.intent_name())
     return alexa.route_request(request_obj, metadata)
 
@@ -59,13 +59,13 @@ def volume_zone2_intent(request):
         
 @alexa.intent_handler("OffIntent")
 def off_intent_handler(request):
+    self.metadata['lights'].switch('Amplifier', 'off')
     return command(['Z2OFF','PWSTANDBY'], "Stereo is off.")
 
 @alexa.intent_handler("SetupMainZoneIntent")
 def activity_intent_handler(request):
     act = request.slots["Activity"].lower()
     return setup_main_zone_for_activity(act)
-
 
 @alexa.default_handler()
 def default_handler(request):
@@ -100,6 +100,7 @@ def setup_main_zone_for_activity(act):
         return alexa.create_response("Sorry, I don't know how to set up the stereo for the " + act + " task.", end_session=True, card_obj=alexa.create_card(title="Marantz Error", content=act))
 
     response = command(['Z2OFF', 'PWON', 'ZMON', 'SI'+name], msg)
+    self.metadata['lights'].switch('Amplifier', 'on')
     return response
 
 def setup_zone2_for_activity(source):

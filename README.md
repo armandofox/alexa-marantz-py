@@ -57,6 +57,10 @@ receiver.
 
 To set the environment variables, say:
 `IP=`*your_external_ip* `PORT=`*port_forwarding_number*` make update_port_and_ip`
+If you don't set `IP`, the Makefile includes a command to try to
+figure it out using the OpenDNS resolvers and `myip.opendns.com`.  
+If you don't set `PORT`, the default value will be the one in the
+current Lambda configuration (i.e. unchanged).
 
 ## Wasn't that easy?
 
