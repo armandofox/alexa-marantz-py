@@ -1,0 +1,4 @@
+[console_scripts]
+meross_info_gather = utilities.meross_info_gather:main
+meross_sniffer = utilities.meross_sniffer:main
+
