@@ -2,8 +2,8 @@ import os
 import time
 from random import randint
 
-from meross_iot.cloud.devices.power_plugs import GenericPlug
 from meross_iot.cloud.devices.light_bulbs import GenericBulb
+from meross_iot.cloud.devices.power_plugs import GenericPlug
 
 from meross_iot.manager import MerossManager
 from meross_iot.meross_event import MerossEventType
@@ -17,7 +17,7 @@ class MerossDriver():
         self.mm = MerossManager(email, password)
         self.mm.start()
 
-    def switch(name, func):
+    def switch(self, name, func):
         dev = self.mm.get_device_by_name(name)
         if (func == 'on'):
             dev.turn_on()
