@@ -35,14 +35,14 @@ def interactive_setup_intent(request):
     location = request.slots["Location"].lower()
     print ("Activity=<{}>, Location=<{}>\n".format(act,location))
     if location == 't.v. room' or location == 'tv room':
-        return setup_main_zone_for_activity(act)
+        return setup_main_zone_for_activity(act,request)
     else:
-        return setup_zone2_for_activity(act)
+        return setup_zone2_for_activity(act,request)
 
 @alexa.intent_handler("PlayZoneTwoIntent")
 def play_zone2_intent_handler(request):
     source = request.slots["Activity"].lower()
-    return setup_zone2_for_activity(source)
+    return setup_zone2_for_activity(source,request)
 
 @alexa.intent_handler("StopZoneTwoIntent")
 def stop_intent_handler(request):
@@ -60,13 +60,13 @@ def volume_zone2_intent(request):
         
 @alexa.intent_handler("OffIntent")
 def off_intent_handler(request):
-    self.metadata['lights'].switch('Amplifier', 'off')
+    request.metadata['lights'].switch('Amplifier', 'off')
     return command(['Z2OFF','PWSTANDBY'], "Stereo is off.")
 
 @alexa.intent_handler("SetupMainZoneIntent")
 def activity_intent_handler(request):
     act = request.slots["Activity"].lower()
-    return setup_main_zone_for_activity(act)
+    return setup_main_zone_for_activity(act,request)
 
 @alexa.default_handler()
 def default_handler(request):
@@ -84,7 +84,7 @@ def session_ended_request_handler(request):
     return alexa.create_response(message="MarantzControl signoff")
     
 
-def setup_main_zone_for_activity(act):
+def setup_main_zone_for_activity(act,request):
     if act in ("tv", "t.v.", "netflix", "roku", "you tube", "youtube", "amazon video"):
         name = 'SAT/CBL'
         msg = 'OK. Turn on the TV to watch Roku, Netflix, or Amazon Video.'
@@ -101,10 +101,10 @@ def setup_main_zone_for_activity(act):
         return alexa.create_response("Sorry, I don't know how to set up the stereo for the " + act + " task.", end_session=True, card_obj=alexa.create_card(title="Marantz Error", content=act))
 
     response = command(['Z2OFF', 'PWON', 'ZMON', 'SI'+name], msg)
-    self.metadata['lights'].switch('Amplifier', 'on')
+    request.metadata['lights'].switch('Amplifier', 'on')
     return response
 
-def setup_zone2_for_activity(source):
+def setup_zone2_for_activity(source,request):
     source = source.lower()
     if source in ('i phone', 'iphone', 'mac', 'itunes', 'i tunes', 'air play', 'pandora', 'spotify'):
         name = 'NET'
