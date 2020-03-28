@@ -34,10 +34,10 @@ def interactive_setup_intent(request):
     act = request.slots["Activity"].lower()
     location = request.slots["Location"].lower()
     print ("Activity=<{}>, Location=<{}>\n".format(act,location))
-    if location == 't.v. room' or location == 'tv room':
-        return setup_main_zone_for_activity(act,request)
-    else:
+    if location.find('piano') > 0:
         return setup_zone2_for_activity(act,request)
+    else:
+        return setup_main_zone_for_activity(act,request)
 
 @alexa.intent_handler("PlayZoneTwoIntent")
 def play_zone2_intent_handler(request):
@@ -56,7 +56,7 @@ def volume_zone2_intent(request):
         
 @alexa.intent_handler("OffIntent")
 def off_intent_handler(request):
-    everything_off()
+    everything_off(request)
     return command(['Z2OFF','PWSTANDBY'], "Stereo is off.")
 
 @alexa.intent_handler("SetupMainZoneIntent")
@@ -82,12 +82,9 @@ def session_ended_request_handler(request):
 
 def setup_main_zone_for_activity(act,request):
     location = request.slots["Location"].lower()
-    if act in ("tv", "t.v.", "netflix", "roku", "you tube", "youtube", "amazon video"):
+    if act in ("tv", "t.v.", "netflix", "roku", "you tube", "youtube", "amazon video", "amazon prime", "amazon"):
         name = 'SAT/CBL'
-        msg = 'OK. Turn on the TV to watch Roku, Netflix, or Amazon Video.'
-    elif act in ('you tube', 'youtube'):
-        name = 'SAT/CBL'
-        msg = 'OK. Use the Roku remote to select the You Tube app.'
+        msg = 'OK. Use the Panasonic remote to turn on the TV to watch {}.'.format(act)
     elif act.find('phone') > -1 or act in ('air play', 'pandora', 'spotify'):
         name = 'NET'
         msg = 'OK. Open any music app on your I phone and choose the Marantz receiver as the Air Play destination.'
@@ -95,7 +92,8 @@ def setup_main_zone_for_activity(act,request):
         name = 'BD'
         msg = 'DVD player is ready. What are we watching?'
     else:
-        return alexa.create_response("Sorry, I don't know how to set up the stereo for the " + act + " task.", end_session=True, card_obj=alexa.create_card(title="Marantz Error", content=act))
+        return alexa.create_response("Sorry, I don't know how to set up Marantz Receiver for {}.".format(act),
+                                     end_session=True, card_obj=alexa.create_card(title="Marantz Error", content=act))
 
     response = command(['Z2OFF', 'PWON', 'ZMON', 'SI'+name], msg)
     activate_amplifier(request,'on')
