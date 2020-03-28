@@ -99,7 +99,7 @@ def setup_main_zone_for_activity(act,request):
     activate_amplifier(request,'on')
     if location.find('theater') > 0:
         # also activate "theater lighting": main OFF, light string ON, lamp ON
-        activate_theater_lighting()
+        activate_theater_lighting(request)
     return response
 
 def setup_zone2_for_activity(source,request):
