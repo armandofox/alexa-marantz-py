@@ -22,7 +22,7 @@ class AVR():
             conn = telnetlib.Telnet()
             conn.open(self.ip, self.port, 3)
             for command in commands:
-                conn.write(command + "\r")
+                conn.write((command + "\r").encode('ascii'))
                 time.sleep(self.delay)
             result = 'OK'
         except Exception as err:

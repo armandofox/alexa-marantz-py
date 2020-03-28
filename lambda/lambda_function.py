@@ -44,10 +44,6 @@ def play_zone2_intent_handler(request):
     source = request.slots["Activity"].lower()
     return setup_zone2_for_activity(source,request)
 
-@alexa.intent_handler("StopZoneTwoIntent")
-def stop_intent_handler(request):
-    return command('Z2OFF', "Piano room speakers turned off.")
-
 @alexa.intent_handler("VolumeZoneTwoIntent")
 def volume_zone2_intent(request):
     vol = request.slots["Volume"].lower()
@@ -60,7 +56,7 @@ def volume_zone2_intent(request):
         
 @alexa.intent_handler("OffIntent")
 def off_intent_handler(request):
-    request.metadata['lights'].switch('Amplifier', 'off')
+    everything_off()
     return command(['Z2OFF','PWSTANDBY'], "Stereo is off.")
 
 @alexa.intent_handler("SetupMainZoneIntent")
@@ -85,6 +81,7 @@ def session_ended_request_handler(request):
     
 
 def setup_main_zone_for_activity(act,request):
+    location = request.slots["Location"].lower()
     if act in ("tv", "t.v.", "netflix", "roku", "you tube", "youtube", "amazon video"):
         name = 'SAT/CBL'
         msg = 'OK. Turn on the TV to watch Roku, Netflix, or Amazon Video.'
@@ -101,7 +98,10 @@ def setup_main_zone_for_activity(act,request):
         return alexa.create_response("Sorry, I don't know how to set up the stereo for the " + act + " task.", end_session=True, card_obj=alexa.create_card(title="Marantz Error", content=act))
 
     response = command(['Z2OFF', 'PWON', 'ZMON', 'SI'+name], msg)
-    request.metadata['lights'].switch('Amplifier', 'on')
+    activate_amplifier(request,'on')
+    if location.find('theater') > 0:
+        # also activate "theater lighting": main OFF, light string ON, lamp ON
+        activate_theater_lighting()
     return response
 
 def setup_zone2_for_activity(source,request):
@@ -118,3 +118,20 @@ def setup_zone2_for_activity(source,request):
     return command(['Z2ON', 'Z2' + name], msg)
 
 
+# helper methods
+def activate_amplifier(request,action):
+    request.metadata['lights'].switch('Amplifier', action)
+
+
+def activate_theater_lighting(request):
+    lights = request.metadata['lights']
+    lights.switch('tv room light string', 'on')
+    lights.switch('TV room lamp', 'on')
+    lights.switch('TV Room Main', 'off')
+
+def everything_off(request):    
+    lights = request.metadata['lights']
+    lights.switch('tv room light string', 'off')
+    lights.switch('TV room lamp', 'off')
+    lights.switch('TV Room Main', 'off')
+    lights.switch('Amplifier', 'off')
