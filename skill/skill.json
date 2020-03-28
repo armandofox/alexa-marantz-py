@@ -1,0 +1,442 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "marantz receiver",
+            "intents": [
+                {
+                    "name": "PlayZoneTwoIntent",
+                    "slots": [
+                        {
+                            "name": "Activity",
+                            "type": "ACTIVITY_LIST"
+                        }
+                    ],
+                    "samples": [
+                        "play  {Activity} in the piano room",
+                        "play the {Activity} in the piano room",
+                        "play my {Activity} in the piano room"
+                    ]
+                },
+                {
+                    "name": "VolumeZoneTwoIntent",
+                    "slots": [
+                        {
+                            "name": "Volume",
+                            "type": "VOLUME_CHANGES"
+                        }
+                    ],
+                    "samples": [
+                        "{Volume}"
+                    ]
+                },
+                {
+                    "name": "SetupMainZoneIntent",
+                    "slots": [
+                        {
+                            "name": "Activity",
+                            "type": "ACTIVITY_LIST"
+                        }
+                    ],
+                    "samples": [
+                        "watch from my {Activity}",
+                        "watch from a {Activity}",
+                        "watch from the {Activity}",
+                        "watch from some {Activity}",
+                        "watch from an {Activity}",
+                        "watch from {Activity}",
+                        "watch my {Activity}",
+                        "watch a {Activity}",
+                        "watch the {Activity}",
+                        "watch some {Activity}",
+                        "watch an {Activity}",
+                        "watch {Activity}",
+                        "play from my {Activity}",
+                        "play from a {Activity}",
+                        "play from the {Activity}",
+                        "play from some {Activity}",
+                        "play from an {Activity}",
+                        "play from {Activity}",
+                        "play my {Activity}",
+                        "play a {Activity}",
+                        "play the {Activity}",
+                        "play some {Activity}",
+                        "play an {Activity}",
+                        "play {Activity}",
+                        "listen to from my {Activity}",
+                        "listen to from a {Activity}",
+                        "listen to from the {Activity}",
+                        "listen to from some {Activity}",
+                        "listen to from an {Activity}",
+                        "listen to from {Activity}",
+                        "listen to my {Activity}",
+                        "listen to a {Activity}",
+                        "listen to the {Activity}",
+                        "listen to some {Activity}",
+                        "listen to an {Activity}",
+                        "listen to {Activity}",
+                        "show from my {Activity}",
+                        "show from a {Activity}",
+                        "show from the {Activity}",
+                        "show from some {Activity}",
+                        "show from an {Activity}",
+                        "show from {Activity}",
+                        "show my {Activity}",
+                        "show a {Activity}",
+                        "show the {Activity}",
+                        "show some {Activity}",
+                        "show an {Activity}",
+                        "show {Activity}",
+                        "see from my {Activity}",
+                        "see from a {Activity}",
+                        "see from the {Activity}",
+                        "see from some {Activity}",
+                        "see from an {Activity}",
+                        "see from {Activity}",
+                        "see my {Activity}",
+                        "see a {Activity}",
+                        "see the {Activity}",
+                        "see some {Activity}",
+                        "see an {Activity}",
+                        "see {Activity}",
+                        "set up from my {Activity}",
+                        "set up from a {Activity}",
+                        "set up from the {Activity}",
+                        "set up from some {Activity}",
+                        "set up from an {Activity}",
+                        "set up from {Activity}",
+                        "set up my {Activity}",
+                        "set up a {Activity}",
+                        "set up the {Activity}",
+                        "set up some {Activity}",
+                        "set up an {Activity}",
+                        "set up {Activity}",
+                        "set up from my {Activity}",
+                        "set up from a {Activity}",
+                        "set up from the {Activity}",
+                        "set up from some {Activity}",
+                        "set up from an {Activity}",
+                        "set up from {Activity}",
+                        "set up my {Activity}",
+                        "set up a {Activity}",
+                        "set up the {Activity}",
+                        "set up some {Activity}",
+                        "set up an {Activity}",
+                        "set up {Activity}",
+                        "set up for from my {Activity}",
+                        "set up for from a {Activity}",
+                        "set up for from the {Activity}",
+                        "set up for from some {Activity}",
+                        "set up for from an {Activity}",
+                        "set up for from {Activity}",
+                        "set up for my {Activity}",
+                        "set up for a {Activity}",
+                        "set up for the {Activity}",
+                        "set up for some {Activity}",
+                        "set up for an {Activity}",
+                        "set up for {Activity}",
+                        "stream from my {Activity}",
+                        "stream from a {Activity}",
+                        "stream from the {Activity}",
+                        "stream from some {Activity}",
+                        "stream from an {Activity}",
+                        "stream from {Activity}",
+                        "stream my {Activity}",
+                        "stream a {Activity}",
+                        "stream the {Activity}",
+                        "stream some {Activity}",
+                        "stream an {Activity}",
+                        "stream {Activity}"
+                    ]
+                },
+                {
+                    "name": "OffIntent",
+                    "slots": [],
+                    "samples": [
+                        "turn off"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "InteractiveSetupIntent",
+                    "slots": [
+                        {
+                            "name": "Activity",
+                            "type": "ACTIVITY_LIST"
+                        },
+                        {
+                            "name": "Location",
+                            "type": "MARANTZ_LOCATIONS"
+                        }
+                    ],
+                    "samples": [
+                        "turn on",
+                        "set up"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "ACTIVITY_LIST",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "you tube"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "youtube"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "netflix"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "t.v."
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "TV"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "amazon"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "amazon video"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "amazon prime"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "spotify"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "DVD"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "movie"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pandora"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "I phone"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "air play"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "roku"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "MARANTZ_SOURCES",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "spotify"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "pandora"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "I phone"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "iPhone"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "mac"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "I tunes"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "iTunes"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "VOLUME_CHANGES",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "louder"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "softer"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "MARANTZ_LOCATIONS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "t.v. room with theater lighting"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "piano room"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "t.v. room",
+                                "synonyms": [
+                                    "TV room"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "InteractiveSetupIntent",
+                    "delegationStrategy": "ALWAYS",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.345228924536"
+                    },
+                    "slots": [
+                        {
+                            "name": "Activity",
+                            "type": "ACTIVITY_LIST",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.345228924536.1338295093966"
+                            },
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.1370785859577.973426721733.119849241849"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Location",
+                            "type": "MARANTZ_LOCATIONS",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.345228924536.994662077651"
+                            },
+                            "validations": [
+                                {
+                                    "type": "hasEntityResolutionMatch",
+                                    "prompt": "Slot.Validation.1370785859577.200305241652.1501118645527"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.345228924536.1338295093966",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What do you want to watch or listen to?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.345228924536.994662077651",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Where, in the t.v. room,  t.v. room with theater lighting,   or piano room?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.345228924536",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "OK, I will set up to play {Activity} in the {Location} , is that what you want?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1370785859577.973426721733.119849241849",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Sorry, I don't know that activity."
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1370785859577.200305241652.1501118645527",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Sorry, I don't recognize that location."
+                    }
+                ]
+            }
+        ]
+    }
+}
