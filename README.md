@@ -6,42 +6,33 @@ Marantz models as well) via Alexa.
 The code is based on [@anjishnu](https://github.com/anjishnu)'s useful [Python version of Alexa Skills
 Kit](https://github.com/anjishnu/ask-alexa-pykit). 
 
-You need Python 2.7 or later and the [AWS command line tool](https://aws.amazon.com/cli/).
+It's running with Python 3.7 and the [AWS command line tool](https://aws.amazon.com/cli/).
 
 # Usage
 
 ## 1. Set up the skill and slot types
 
-Unfortunately, Amazon doesn't yet provide an API to upload the intent
-schema, utterances, and slot types, so you have to add them manually
-using their GUI:
+I made this before Amazon's API allowed uploading JSON directly for
+intent schema, utterances, slot types, etc., although
+`skill/skill.json` is up-to-date so you should use that instead of
+setting up slot types manually. 
 
-1. Set up a custom skill on Amazon's Alexa developer pages and give it a
-name.  Change the value of `SKILL_NAME` in the `Makefile` to whatever
-you called your skill.
+If you want to add utterances, you can add/modify utterances in `skill/utterances.txt.glob` and then
+`make skill/utterances.txt` to generate the changes.  It's a little
+hack to allow simple globbing to simplify recognizing variants of
+different utterances.
 
-2. In the Interaction Model, add Custom Slot Types named
-`MARANTZ_SOURCES`, `ACTIVITY_LIST`, and `VOLUME_CHANGES`, and copy the
-contents of the respective files (in the
-`skill/` directory) as the slot values.
-
-3. Copy the contents of `skill/utterances.txt` to the Sample Utterances.
-You can add/modify utterances in `skill/utterances.txt.glob` and then
-`make skill/utterances.txt` to generate the changes.
-
-4. Copy the contents of `skill/intent_schema.json` to the Intent Schema box
-in the interaction model.
-
-**NOTE:** Unfortunately you cannot name your skill "the stereo" because
-Alexa apparently reserves "Tell the stereo to..." for "smart home"
-compatible stereo receivers, which this isn't.  So instead, I named our
-skill "Thisterio", which works in practice when you say "Tell thistereo to..."
+Change the value of `SKILL_NAME` in the `Makefile` to whatever
+you called your skill, if you want to use the convenient make targets
+for updating the code and updating the port/IP of your port-forwarding
+firewall (see below).
 
 ## 2. Upload the skill itself
 
 Create a lambda function using the AWS GUI (you only need to do this
 once).  Then `make upload_lambda` to upload the Python code as the
-lambda body.
+lambda body.  If you look at the `Makefile` you'll see you need to
+have your AWS CLI credentials set up, etc. to use this feature.
 
 ## 3. Set up port forwarding
 
@@ -66,11 +57,11 @@ current Lambda configuration (i.e. unchanged).
 
 You can now say things like:
 
-`Alexa, tell thisterio to play Roku`
+`Alexa, tell <skill> to play Roku`
 
-`Alexa, tell thisterio to play my iPhone in zone 2`  (in my house, Zone
+`Alexa, tell <skill> to play my iPhone in zone 2`  (in my house, Zone
 2 is our piano room, so in the skills code, `the piano room` is an alias
 for `zone two`; modify to fit your house)
 
-`Alexa, tell thisterio to turn off`
+`Alexa, tell <skill> to turn off`
 
