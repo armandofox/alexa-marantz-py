@@ -57,7 +57,7 @@ def volume_zone2_intent(request):
 @alexa.intent_handler("OffIntent")
 def off_intent_handler(request):
     everything_off(request)
-    return command(['Z2OFF','PWSTANDBY'], "Stereo is off.")
+    return command(['Z2OFF','PWSTANDBY'], "Stereo is off.  Don't forget to turn off the TV with the Panasonic remote.")
 
 @alexa.intent_handler("SetupMainZoneIntent")
 def activity_intent_handler(request):
@@ -113,6 +113,7 @@ def setup_zone2_for_activity(source,request):
     else:
         return alexa.create_response("I don't know how to play the source {} in the piano room.".format(source), end_session=True)
 
+    activate_amplifier(request,'off')
     return command(['Z2ON', 'Z2' + name], msg)
 
 
