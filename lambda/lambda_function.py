@@ -34,7 +34,7 @@ def interactive_setup_intent(request):
     act = request.slots["Activity"].lower()
     location = request.slots["Location"].lower()
     print ("Activity=<{}>, Location=<{}>\n".format(act,location))
-    if location.find('piano') > 0:
+    if location.find('piano') >= 0:
         return setup_zone2_for_activity(act,request)
     else:
         return setup_main_zone_for_activity(act,request)

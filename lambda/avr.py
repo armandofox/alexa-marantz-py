@@ -8,7 +8,7 @@ class AVR():
 
     MARANTZ_IP = os.environ["IP"]
     MARANTZ_PORT = os.environ["PORT"]
-    DELAY_BETWEEN_COMMANDS = 0.2
+    DELAY_BETWEEN_COMMANDS = 0.3
 
     def __init__(self, ip=MARANTZ_IP, port=MARANTZ_PORT):
         self.ip = ip
